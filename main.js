@@ -28,3 +28,24 @@ function getRandomColor() {
     }
     return color;
 }
+
+// Theme switching logic
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const body = document.body;
+
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+    body.classList.add(currentTheme);
+} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.classList.add('dark-mode');
+}
+
+themeToggleBtn.addEventListener('click', () => {
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light-mode');
+    } else {
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    }
+});
