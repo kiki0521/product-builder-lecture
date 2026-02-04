@@ -33,12 +33,24 @@ function getRandomColor() {
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 const body = document.body;
 
+// Function to update the button text
+function updateThemeToggleButtonText() {
+    if (body.classList.contains('dark-mode')) {
+        themeToggleBtn.textContent = '화이트 모드';
+    } else {
+        themeToggleBtn.textContent = '다크 모드';
+    }
+}
+
+// Apply theme on load
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme) {
     body.classList.add(currentTheme);
 } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     body.classList.add('dark-mode');
 }
+// Initial button text update
+updateThemeToggleButtonText();
 
 themeToggleBtn.addEventListener('click', () => {
     if (body.classList.contains('dark-mode')) {
@@ -48,4 +60,6 @@ themeToggleBtn.addEventListener('click', () => {
         body.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark-mode');
     }
+    // Update button text after theme change
+    updateThemeToggleButtonText();
 });

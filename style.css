@@ -80,6 +80,9 @@ h1 {
 }
 
 #theme-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
     font-size: 16px;
     color: white;
@@ -87,8 +90,8 @@ h1 {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
+    z-index: 1000; /* Ensure it's above other content */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #theme-toggle-btn:hover {
